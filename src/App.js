@@ -52,6 +52,7 @@ const HTMLContent = ({
   bgColor,
   modelPath,
   position,
+  modelScale
 }) => {
   const ref = useRef();
   useFrame(() => (ref.current.rotation.y += 0.01));
@@ -64,7 +65,7 @@ const HTMLContent = ({
   return (
     <Section factor={1.5} offset={1}>
       <group position={[0, position, 0]}>
-        <mesh ref={ref} position={[0, -35, 0]}>
+        <mesh ref={ref} position={[0, -45, 0]} scale={modelScale ? modelScale: [1,1,1]}>
           <Model url={modelPath} />
         </mesh>
         <Html fullscreen portal={domContent}>
@@ -116,29 +117,56 @@ export default function App() {
         <Suspense fallback={null}>
           <HTMLContent
             domContent={domContent}
-            bgColor='#f15946'
-            modelPath='/armchairYellow.gltf'
-            position={250}>
-            <span>Meet the new </span>
-            <span>shopping experience </span>
-            <span>for online chairs</span>
+            bgColor='#A4A6A6'
+            modelPath='/tesla_model_s/scene.gltf'
+            position={250}
+            modelScale={[0.3,0.3,0.3]}
+            >
+              <span>Tesla</span>
+              <span>Model S</span>
+              <p style={{fontSize: 30}}>$74,990</p>
           </HTMLContent>
           <HTMLContent
             domContent={domContent}
-            bgColor='#571ec1'
-            modelPath='/armchairGreen.gltf'
-            position={0}>
-            <span>Shit... we even</span>
-            <span>got different colors</span>
+            bgColor='#00CDFF'
+            modelPath='/bmw_i8/scene.gltf'
+            position={0}
+            modelScale={[0.3,0.3,0.3]}
+            >
+            <span>BMW i8</span>
+            <p style={{fontSize: 30}}>$147,500</p>
           </HTMLContent>
           <HTMLContent
             domContent={domContent}
-            bgColor='#636567'
-            modelPath='/armchairGray.gltf'
+            bgColor='#FCAC02'
+            modelPath='/lamborghini_terzor/scene.gltf'
+            modelScale={[25,25,25]}
             position={-250}>
-            <span>And yes</span>
-            <span>we even got</span>
-            <span>monochrome!</span>
+            <span>Lamborghini</span>
+            <span>Terzor</span>
+            <p style={{fontSize: 30}}>$2,500,000</p>
+          </HTMLContent>
+          <HTMLContent
+            domContent={domContent}
+            bgColor='black'
+            modelPath='/audi_r8_3d_model/scene.gltf'
+            position={-500}
+            modelScale={[20,20,20]}
+            >
+              <span>Audi R8</span>
+              <p style={{fontSize: 30}}>$169,900</p>
+
+          </HTMLContent>
+          <HTMLContent
+            domContent={domContent}
+            bgColor='silver'
+            modelPath='/tesla_cybertruck/scene.gltf'
+            position={-750}
+            modelScale={[20,20,20]}
+            >
+              <span>Tesla Cybertruck</span>
+              <p style={{fontSize: 30}}>$39,900</p>
+
           </HTMLContent>
         </Suspense>
       </Canvas>
